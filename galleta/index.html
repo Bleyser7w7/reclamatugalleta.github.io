@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reclama tu galleta</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="contenedor-galleta">
+    <h1>¡Reclama tu galleta!</h1>
+    <button id="btn-reclamar">Reclamar galleta</button>
+    <div class="galleta-contenedor">
+      <!-- Galleta SVG -->
+      <svg id="galleta" class="galleta-svg" width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="70" cy="70" r="65" fill="#F4C16D" stroke="#E2A23A" stroke-width="10"/>
+        <circle cx="50" cy="60" r="7" fill="#A66A2C"/>
+        <circle cx="90" cy="50" r="6" fill="#A66A2C"/>
+        <circle cx="80" cy="90" r="8" fill="#A66A2C"/>
+        <circle cx="60" cy="90" r="5" fill="#A66A2C"/>
+        <circle cx="100" cy="80" r="4" fill="#A66A2C"/>
+      </svg>
+    </div>
+  </div>
+  <script>
+    const btn = document.getElementById('btn-reclamar');
+    const galleta = document.getElementById('galleta');
+
+    btn.addEventListener('click', () => {
+      btn.disabled = true;
+      btn.textContent = '¡Galleta reclamada!';
+      galleta.classList.add('saltar');
+
+      // Descargar la imagen
+      const link = document.createElement('a');
+      link.href = 'galleta.png'; // Cambia el nombre si tu imagen es diferente
+      link.download = 'mi_galleta.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setTimeout(() => {
+        galleta.classList.remove('saltar');
+        btn.disabled = false;
+        btn.textContent = 'Reclamar galleta';
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
